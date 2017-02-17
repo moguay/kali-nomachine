@@ -4,7 +4,7 @@ MAINTAINER moguayv@gmail.com
 RUN echo "deb http://http.kali.org/kali kali-rolling main contrib non-free" > /etc/apt/sources.list && \
 echo "deb-src http://http.kali.org/kali kali-rolling main contrib non-free" >> /etc/apt/sources.list
 ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get -y update && apt-get -y dist-upgrade && apt-get clean
+#RUN apt-get -y update && apt-get -y dist-upgrade && apt-get clean
 
 RUN apt-get update && apt-get install -y vim xterm pulseaudio cups curl
 # Goto https://www.nomachine.com/download/download&id=10 and change for the latest NOMACHINE_PACKAGE_NAME and MD5 shown in that link to get the latest version.
@@ -12,8 +12,8 @@ ENV NOMACHINE_PACKAGE_NAME nomachine_5.2.11_1_amd64.deb
 ENV NOMACHINE_MD5 d697e5a565507d522380c94d2f295d07
 
 # Install the version you would like to have
-RUN apt-get update -y && \
-    apt-get install -y kali-linux
+#RUN apt-get update -y && \
+#    apt-get install -y kali-linux
 
 # Install nomachine, change password and username to whatever you want here
 RUN curl -fSL "http://download.nomachine.com/download/5.2/Linux/${NOMACHINE_PACKAGE_NAME}" -o nomachine.deb \
@@ -34,6 +34,6 @@ RUN apt-get install -y python3-software-properties software-properties-common wg
 # RUN apt-get update -y && apt-get install -y tor firefox libreoffice htop nano git vim tor-browser
 
 ADD nxserver.sh /
-RUN ["chmod", "+x", "/nxserver.sh”]
+RUN ["chmod", "744", "/nxserver.sh”]
 
 ENTRYPOINT ["/nxserver.sh"]
