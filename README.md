@@ -1,5 +1,5 @@
 # kali-nomachine
-Kali TOP10 Dockerfile with NoMachine remote access
+Kali Dockerfile with NoMachine remote access
 
 # How to run
 ## Build
