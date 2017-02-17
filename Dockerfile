@@ -1,5 +1,5 @@
 FROM kalilinux/kali-linux-docker
-MAINTAINER moguay@moguay.biz
+MAINTAINER moguayv@gmail.com
 
 RUN echo "deb http://http.kali.org/kali kali-rolling main contrib non-free" > /etc/apt/sources.list && \
 echo "deb-src http://http.kali.org/kali kali-rolling main contrib non-free" >> /etc/apt/sources.list
@@ -21,15 +21,17 @@ RUN curl -fSL "http://download.nomachine.com/download/5.2/Linux/${NOMACHINE_PACK
 && dpkg -i nomachine.deb \
 && groupadd -r nomachine -g 433 \
 && useradd -u 431 -r -g nomachine -d /home/nomachine -s /bin/bash -c "NoMachine" nomachine \
+&& adduser nomachine sudo \
 && mkdir /home/nomachine \
 && chown -R nomachine:nomachine /home/nomachine \
 && echo 'nomachine:nomachine' | chpasswd
 
 # install add-apt-repository stuff to get tor-browser working
-RUN apt-get install -y software-properties-common python3-software-properties python-software-properties wget xdg-utils libpango1.0-0 fonts-liberation
+# RUN apt-get install -y software-properties-common python3-software-properties python-software-properties wget xdg-utils libpango1.0-0 fonts-liberation
+RUN apt-get install -y python3-software-properties software-properties-common wget xdg-utils libpango1.0-0 fonts-liberation
 # download tor and install
-RUN add-apt-repository ppa:webupd8team/tor-browser
-RUN apt-get update -y && apt-get install -y tor firefox libreoffice htop nano git vim tor-browser
+# RUN add-apt-repository ppa:webupd8team/tor-browser
+# RUN apt-get update -y && apt-get install -y tor firefox libreoffice htop nano git vim tor-browser
 
 ADD nxserver.sh /
 
