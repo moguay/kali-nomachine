@@ -33,6 +33,10 @@ RUN apt-get install -y python3-software-properties software-properties-common wg
 # RUN add-apt-repository ppa:webupd8team/tor-browser
 # RUN apt-get update -y && apt-get install -y tor firefox libreoffice htop nano git vim tor-browser
 
-ADD nxserver.sh \
-ENTRYPOINT ["sh /nxserver.sh"]
-RUN ["chmod", "+x", "/nxserver.sh”]
+#ADD nxserver.sh \
+#ENTRYPOINT ["sh /nxserver.sh"]
+#RUN ["chmod", "+x", "/nxserver.sh”]
+
+ADD nxserver.sh /nxserver.sh
+RUN chmod 0755 /nxserver.sh
+CMD /nxserver.sh
